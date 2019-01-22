@@ -1,12 +1,18 @@
 package application.android.com.viewpagerdemo.fragment;
 
+import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.ActivityOptionsCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
 import application.android.com.viewpagerdemo.MainActivity;
 import application.android.com.viewpagerdemo.R;
+import application.android.com.viewpagerdemo.activity.Activity1;
 import application.android.com.viewpagerdemo.base.BaseScrollFragment;
 import application.android.com.viewpagerdemo.scrollview.ObservableScrollView;
 import application.android.com.viewpagerdemo.scrollview.OnScrollChangedListener;
@@ -29,6 +35,21 @@ public class ScrollViewFragment extends BaseScrollFragment {
   @Override public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
     super.onViewCreated(view, savedInstanceState);
     scrollView = view.findViewById(R.id.scrollView);
+    final View button = view.findViewById(R.id.button);
+    button.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View view) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+          Intent intent = new Intent(getActivity(), Activity1.class);
+
+          final ActivityOptionsCompat optionsCompat = ActivityOptionsCompat.makeSceneTransitionAnimation(
+                  getActivity(), button, "shareView");
+
+          ActivityCompat.startActivity(
+                  getActivity(), intent, optionsCompat.toBundle());
+        }
+      }
+    });
     scrollView.setOnScrollChangedListener(new OnScrollChangedListener() {
       @Override public void onScrollChanged(int top, int oldTop) {
         if (isPageVisible()) {

@@ -11,6 +11,13 @@
       android:paddingLeft="20dp"
       >
     <include layout="@layout/rv_header"/>
+    <Button
+        android:id="@+id/button"
+        android:layout_width="200dp"
+        android:layout_height="36dp"
+        android:text="click"
+        android:transitionName="shareView"
+        android:layout_gravity="center_horizontal"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="match_parent"

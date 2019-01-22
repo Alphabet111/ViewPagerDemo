@@ -3,6 +3,12 @@ package application.android.com.viewpagerdemo;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+
+import com.flyco.tablayout.SlidingTabLayout;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import application.android.com.viewpagerdemo.adapter.BodyPagerAdapter;
 import application.android.com.viewpagerdemo.adapter.HeaderPagerAdapter;
 import application.android.com.viewpagerdemo.base.BaseScrollFragment;
@@ -11,9 +17,6 @@ import application.android.com.viewpagerdemo.fragment.CoordinatelayoutFragment;
 import application.android.com.viewpagerdemo.fragment.RecyclerViewFragment;
 import application.android.com.viewpagerdemo.fragment.ScrollViewFragment;
 import application.android.com.viewpagerdemo.util.DensityUtil;
-import com.flyco.tablayout.SlidingTabLayout;
-import java.util.ArrayList;
-import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -27,6 +30,10 @@ public class MainActivity extends AppCompatActivity {
 
   @Override protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
+    //设置允许通过ActivityOptions.makeSceneTransitionAnimation发送或者接收Bundle
+//    getWindow().requestFeature(Window.FEATURE_ACTIVITY_TRANSITIONS);
+//    //设置使用TransistionManager进行动画，不设置的话系统会使用一个默认的TransitionManager
+//    getWindow().requestFeature(Window.FEATURE_CONTENT_TRANSITIONS);
     setContentView(R.layout.activity_main);
     initView();
     initViewPager();
